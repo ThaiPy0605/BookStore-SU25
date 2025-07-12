@@ -1,18 +1,18 @@
 package dal.implement;
 
 import dal.GenericDAO;
-import entity.Product;
+import entity.Category;
 import java.util.List;
 
-public class CategoryDAO extends GenericDAO<Product> {
+public class CategoryDAO extends GenericDAO<Category> {
 
     @Override
-    public List<Product> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Category> findAll() {
+        return queryGenericDAO(Category.class);
     }
 
     @Override
-    public int insert(Product t) {
+    public int insert(Category t) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
