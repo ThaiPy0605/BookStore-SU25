@@ -81,7 +81,7 @@
                                     <div class="flexslider">
                                         <ul class="slides">
                                             <li data-thumb="img/thum-2/1.jpg">
-                                                <img src="${product.image}/img/flex/1.jpg" alt="woman" />
+                                                <img src="${product.image}" alt="woman" />
                                             </li>
                                         </ul>
                                     </div>
