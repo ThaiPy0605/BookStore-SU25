@@ -1,4 +1,4 @@
-package controller;
+package controller.homepage;
 
 import constant.CommonConst;
 import dal.implement.CategoryDAO;
@@ -32,8 +32,8 @@ public class HomeController extends HttpServlet {
 
         //set listProd, listCate to session
         HttpSession session = request.getSession();
-        session.setAttribute("listProd", listProd);
-        session.setAttribute("listCate", listCate);
+        session.setAttribute(CommonConst.SESSION_PRODUCT, listProd);
+        session.setAttribute(CommonConst.SESSION_CATEGORY, listCate);
         request.setAttribute("pageControl", pageControl);
 
         request.getRequestDispatcher("view/homepage/home.jsp").forward(request, response);
@@ -95,9 +95,9 @@ public class HomeController extends HttpServlet {
         
         
         //total page
-        int totalPage = (totalRecord % CommonConst.recordPerPage) == 0 
-                ? (totalRecord / CommonConst.recordPerPage)
-                : (totalRecord / CommonConst.recordPerPage) + 1;
+        int totalPage = (totalRecord % CommonConst.RECORD_PER_PAGE) == 0 
+                ? (totalRecord / CommonConst.RECORD_PER_PAGE)
+                : (totalRecord / CommonConst.RECORD_PER_PAGE) + 1;
         //set total record, total page, page vao pageControl
         pageControl.setPage(page);
         pageControl.setTotalRecord(totalRecord);

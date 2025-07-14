@@ -47,8 +47,8 @@ public class ProductDAO extends GenericDAO<Product> {
                 + "  fetch next ? row only"; // RecordPerPage
         parameterMap = new LinkedHashMap<>();
         parameterMap.put("categoryId", categoryId);
-        parameterMap.put("offset", (page - 1) * CommonConst.recordPerPage);
-        parameterMap.put("fetch", CommonConst.recordPerPage);
+        parameterMap.put("offset", (page - 1) * CommonConst.RECORD_PER_PAGE);
+        parameterMap.put("fetch", CommonConst.RECORD_PER_PAGE);
 
         return queryGenericDAO(Product.class, sql, parameterMap);
     }
@@ -62,8 +62,8 @@ public class ProductDAO extends GenericDAO<Product> {
                 + "  fetch next ? row only"; // RecordPerPage
         parameterMap = new LinkedHashMap<>();
         parameterMap.put("name", "%" + keyword + "%");
-        parameterMap.put("offset", (page - 1) * CommonConst.recordPerPage);
-        parameterMap.put("fetch", CommonConst.recordPerPage);
+        parameterMap.put("offset", (page - 1) * CommonConst.RECORD_PER_PAGE);
+        parameterMap.put("fetch", CommonConst.RECORD_PER_PAGE);
 
         return queryGenericDAO(Product.class, sql, parameterMap);
     }
@@ -103,8 +103,8 @@ public class ProductDAO extends GenericDAO<Product> {
                 + "  OFFSET ? ROWS\n" //( PAGE - 1 ) * Y
                 + "  FETCH NEXT ? ROWS ONLY";
         parameterMap = new LinkedHashMap<>();
-        parameterMap.put("offset", (page - 1) * CommonConst.recordPerPage);
-        parameterMap.put("fetch", CommonConst.recordPerPage);
+        parameterMap.put("offset", (page - 1) * CommonConst.RECORD_PER_PAGE);
+        parameterMap.put("fetch", CommonConst.RECORD_PER_PAGE);
         
         return queryGenericDAO(Product.class, sql, parameterMap);
     }
