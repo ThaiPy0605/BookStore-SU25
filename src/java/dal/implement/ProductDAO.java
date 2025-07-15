@@ -114,7 +114,28 @@ public class ProductDAO extends GenericDAO<Product> {
                 + "      WHERE id = ?";
         parameterMap = new LinkedHashMap<>();
         parameterMap.put("id", id);
-        
+
         deleteGenericDAO(sql, parameterMap);
+    }
+
+    public void update(Product editedProd) {
+        String sql = "UPDATE [dbo].[Product]\n"
+                + "   SET [name] = ?\n"
+                + "      ,[image] = ?\n"
+                + "      ,[quantity] = ?\n"
+                + "      ,[price] = ?\n"
+                + "      ,[description] = ?\n"
+                + "      ,[categoryId] = ?\n"
+                + " WHERE [id] = ?";
+        parameterMap = new LinkedHashMap<>();
+        parameterMap.put("name", editedProd.getName());
+        parameterMap.put("image", editedProd.getImage());
+        parameterMap.put("quantity", editedProd.getQuantity());
+        parameterMap.put("price", editedProd.getPrice());
+        parameterMap.put("description", editedProd.getDescription());
+        parameterMap.put("categoryId", editedProd.getCategoryId());
+        parameterMap.put("id", editedProd.getId());
+        
+        updateGenericDAO(sql, parameterMap);
     }
 }
