@@ -93,7 +93,7 @@
                                 </div>
                                 <div class="single-register">
                                     <a href="#"
-                                   onclick="document.querySelector('#signUpForm').submit()">Register</a>
+                                   onclick="document.querySelector('#signUpForm').submit();">Register</a>
                                 </div>
                             </div>
                         </div>
