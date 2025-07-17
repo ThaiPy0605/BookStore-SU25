@@ -28,9 +28,13 @@ public class PaymentController extends HttpServlet {
             case "addProductToCart":
                 addProductToCart(request, response);
                 break;
+            case "changeQuantity":
+                changeQuantity(request, response);
+                break;
             default:
                 throw new AssertionError();
         }
+        response.sendRedirect("payment");
     }
 
     @Override
@@ -47,19 +51,18 @@ public class PaymentController extends HttpServlet {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
         //lay ve cart tren session
         Order cart = (Order) session.getAttribute("cart");
-        
+
         if (cart == null) {
             cart = new Order();
         }
         OrderDetails od = new OrderDetails();
         od.setProductId(id);
         od.setQuantity(quantity);
-        
+
         //them orderdetails vao trong cart
         addOrderDetailsToOrder(od, cart);
         //set cart moi len tren session
         session.setAttribute("cart", cart);
-        response.sendRedirect("payment");
     }
 
     private void addOrderDetailsToOrder(OrderDetails od, Order cart) {
@@ -72,6 +75,26 @@ public class PaymentController extends HttpServlet {
         }
         if (isAdded == false) {
             cart.getListOrderDetails().add(od);
+        }
+    }
+
+    private void changeQuantity(HttpServletRequest request, HttpServletResponse response) {
+        HttpSession session = request.getSession();
+        try {
+            //get ve productId can thay doi quantity
+            int productId = Integer.parseInt(request.getParameter("id"));
+            //get ve quantity
+            int quantity = Integer.parseInt(request.getParameter("quantity"));
+            //lay ve cart
+            Order cart = (Order) session.getAttribute("cart");
+            //thay doi quantity
+            for (OrderDetails obj : cart.getListOrderDetails()) {
+                if (obj.getProductId() == productId) {
+                    obj.setQuantity(quantity);
+                }
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
