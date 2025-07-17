@@ -31,6 +31,9 @@ public class PaymentController extends HttpServlet {
             case "changeQuantity":
                 changeQuantity(request, response);
                 break;
+            case "deleteProductFromCart":
+                deleteProductFromCart(request, response);
+                break;
             default:
                 throw new AssertionError();
         }
@@ -96,6 +99,24 @@ public class PaymentController extends HttpServlet {
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    private void deleteProductFromCart(HttpServletRequest request, HttpServletResponse response) {
+        //get ve productId
+        int productId = Integer.parseInt(request.getParameter("id"));
+        
+        HttpSession session = request.getSession();
+        Order cart = (Order) session.getAttribute("cart");
+        OrderDetails od = null;
+        
+        for (OrderDetails obj : cart.getListOrderDetails()) {
+            if (obj.getProductId() == productId) {
+                od = obj;
+            }
+        }
+        
+        cart.getListOrderDetails().remove(od);
+        session.setAttribute("cart", cart);
     }
 
 }
